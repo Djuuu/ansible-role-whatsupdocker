@@ -1,0 +1,29 @@
+---
+dependencies:
+
+  - name: djuuu.docker_project
+    src: https://github.com/Djuuu/ansible-role-docker-project
+    version: main
+
+galaxy_info:
+  namespace: djuuu
+  role_name: whatsupdocker
+  author: Julien Tardot
+  description: Install What's up Docker Docker Compose project.
+
+  issue_tracker_url: https://github.com/Djuuu/ansible-role-whatsupdocker
+
+  license: Beerware
+
+  min_ansible_version: '2.11'
+
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags:
+    - docker

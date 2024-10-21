@@ -1,0 +1,27 @@
+---
+
+# Docker project variables
+
+whatsupdocker_project_name: whatsupdocker
+
+# Docker project dynamic vars (uses `docker_project_name` prefix, adapt if overriden)
+
+# Traefik options
+whatsupdocker_traefik_loadbalancer_server_port: 3000
+whatsupdocker_traefik_entrypoints: http,https
+whatsupdocker_traefik_middlewares:
+  - "internal-access@file"
+  - "{{ docker_project_slug }}-cors@docker"
+
+# Main service additional docker-compose options (ex: cpu_shares, deploy, ...)
+whatsupdocker_compose_service_additional_options: |
+  #ports:
+  #  - 3000:3000
+
+# What's up Docker project variables
+
+# Docker image version
+whatsupdocker_version: latest
+
+# Local watcher scheduling
+whatsupdocker_watcher_local_cron: '0 */2 * * *'

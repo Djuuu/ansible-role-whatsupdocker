@@ -1,0 +1,33 @@
+#jinja2: trim_blocks: True, lstrip_blocks: True
+# {{ ansible_managed }}
+# {{ template_fullpath }}
+
+name: {{ docker_project_slug }}
+
+services:
+
+  whatsupdocker:
+    container_name: wud
+    image: getwud/wud:{{ whatsupdocker_version }}
+    restart: always
+
+    {{ docker_project_compose_service_additional_options | indent(4) }}
+
+    environment:
+      - TZ={{ timezone | default('UTC') }}
+      - WUD_WATCHER_LOCAL_CRON={{ whatsupdocker_watcher_local_cron }}
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    labels:
+      {{ traefik_project_base_labels | indent(6) }}
+
+      # What's up Docker? - https://github.com/getwud/wud
+      wud.tag.include: ^\d+\.\d+\.\d+$$
+      wud.link.template: https://github.com/getwud/wud/releases/tag/$${major}.$${minor}.$${patch}
+
+networks:
+  {{ docker_project_default_network | indent(2) }}
+
+{{ docker_project_compose_additional_options }}
