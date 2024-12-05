@@ -9,7 +9,7 @@ services:
   whatsupdocker:
     container_name: wud
     image: getwud/wud:{{ whatsupdocker_version }}
-    restart: always
+    restart: unless-stopped
 
     {{ docker_project_compose_service_additional_options | indent(4) }}
 
