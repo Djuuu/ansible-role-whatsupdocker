@@ -11,7 +11,6 @@ whatsupdocker_traefik_loadbalancer_server_port: 3000
 whatsupdocker_traefik_entrypoints: http,https
 whatsupdocker_traefik_middlewares:
   - "internal-access@file"
-  - "{{ docker_project_slug }}-cors@docker"
 
 # Main service additional docker-compose options (ex: cpu_shares, deploy, ...)
 whatsupdocker_compose_service_additional_options: |

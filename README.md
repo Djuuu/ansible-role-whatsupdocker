@@ -43,7 +43,6 @@ whatsupdocker_traefik_loadbalancer_server_port: 3000
 whatsupdocker_traefik_entrypoints: http,https
 whatsupdocker_traefik_middlewares:
   - "internal-access@file"
-  - "{{ docker_project_slug }}-cors@docker"
 
 
 # What's up Docker project variables
