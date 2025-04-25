@@ -50,6 +50,9 @@ whatsupdocker_traefik_middlewares:
 # Docker image version
 whatsupdocker_version: latest
 
+# What's up Docker network mode (bridge|host)
+whatsupdocker_network_mode: bridge
+
 # Local watcher scheduling
 whatsupdocker_watcher_local_cron: '0 */2 * * *'
 ```
