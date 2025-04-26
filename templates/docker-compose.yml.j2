@@ -18,10 +18,21 @@ services:
 
     environment:
       - TZ={{ timezone | default('UTC') }}
-      - WUD_WATCHER_LOCAL_CRON={{ whatsupdocker_watcher_local_cron }}
 
+      {% for watcher in whatsupdocker_watchers | default({}, true) | dict2items %}
+      # {{ watcher.key }}
+      {% for item in watcher.value | default({}, true) | dict2items %}
+      {% set envkey = 'WUD_WATCHER_' ~ (watcher.key | upper) ~ '_' ~ (item.key | upper) %}
+      - {{ envkey }}={{ item.value }}
+      {% endfor %}
+      {% endfor %}
+
+      - WUD_LOG_LEVEL={{ whatsupdocker_log_level | default('info') }}
+
+    {% if whatsupdocker_mount_docker_socket | default(true) %}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    {% endif %}
 
     labels:
       {{ traefik_project_base_labels | indent(6) }}

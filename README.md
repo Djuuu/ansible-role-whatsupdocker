@@ -53,8 +53,21 @@ whatsupdocker_version: latest
 # What's up Docker network mode (bridge|host)
 whatsupdocker_network_mode: bridge
 
-# Local watcher scheduling
-whatsupdocker_watcher_local_cron: '0 */2 * * *'
+# Mount Docker socket inside container?
+whatsupdocker_mount_docker_socket: true
+
+# What's up Docker watchers
+# https://getwud.github.io/wud/#/configuration/watchers/
+whatsupdocker_watchers:
+  local:
+    cron: '0 */2 * * *'
+#  example:
+#    host: example.lan
+#    port: 2375
+#    cron: '0 */6 * * *'
+
+# What's up Docker log level
+whatsupdocker_log_level: info
 ```
 
 Dependencies
