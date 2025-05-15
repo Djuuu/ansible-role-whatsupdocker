@@ -13,7 +13,7 @@ whatsupdocker_traefik_middlewares:
   - "internal-access@file"
 
 # Main service additional docker-compose options (ex: cpu_shares, deploy, ...)
-whatsupdocker_compose_service_additional_options: |
+whatsupdocker_service_additional_options: |
   #ports:
   #  - 3000:3000
 
@@ -21,9 +21,6 @@ whatsupdocker_compose_service_additional_options: |
 
 # Docker image version
 whatsupdocker_version: latest
-
-# What's up Docker network mode (bridge|host)
-whatsupdocker_network_mode: bridge
 
 # Mount Docker socket inside container?
 whatsupdocker_mount_docker_socket: true

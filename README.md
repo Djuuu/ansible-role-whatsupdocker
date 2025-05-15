@@ -50,9 +50,6 @@ whatsupdocker_traefik_middlewares:
 # Docker image version
 whatsupdocker_version: latest
 
-# What's up Docker network mode (bridge|host)
-whatsupdocker_network_mode: bridge
-
 # Mount Docker socket inside container?
 whatsupdocker_mount_docker_socket: true
 

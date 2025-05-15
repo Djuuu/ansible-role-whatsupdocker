@@ -7,14 +7,13 @@ name: {{ docker_project_slug }}
 services:
 
   whatsupdocker:
-    container_name: wud
     image: getwud/wud:{{ whatsupdocker_version }}
-    restart: unless-stopped
-    {% if whatsupdocker_network_mode == 'host' %}
-    network_mode: host
-    {% endif %}
+    container_name: wud
+    restart: {{ docker_project_restart }}
 
-    {{ docker_project_compose_service_additional_options | indent(4) }}
+    {{ docker_project_service_network_options | indent(4) }}
+
+    {{ docker_project_service_additional_options | indent(4) }}
 
     environment:
       - TZ={{ timezone | default('UTC') }}
@@ -41,9 +40,6 @@ services:
       wud.tag.include: ^\d+\.\d+\.\d+$$
       wud.link.template: https://github.com/getwud/wud/releases/tag/$${major}.$${minor}.$${patch}
 
-{% if whatsupdocker_network_mode != 'host' %}
-networks:
-  {{ docker_project_default_network | indent(2) }}
-{% endif %}
+{{ docker_project_networks }}
 
 {{ docker_project_compose_additional_options }}
