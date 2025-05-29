@@ -35,5 +35,13 @@ whatsupdocker_watchers:
 #    port: 2375
 #    cron: '0 */6 * * *'
 
+# What's up Docker registries
+# https://getwud.github.io/wud/#/configuration/registries/
+whatsupdocker_registries:
+#  ghcr:
+#    public:
+#      username: Github-username
+#      token:    Github-token
+
 # What's up Docker log level
 whatsupdocker_log_level: info

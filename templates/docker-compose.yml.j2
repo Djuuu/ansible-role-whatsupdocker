@@ -19,10 +19,19 @@ services:
       - TZ={{ timezone | default('UTC') }}
 
       {% for watcher in whatsupdocker_watchers | default({}, true) | dict2items %}
-      # {{ watcher.key }}
+      # Watcher: {{ watcher.key }}
       {% for item in watcher.value | default({}, true) | dict2items %}
       {% set envkey = 'WUD_WATCHER_' ~ (watcher.key | upper) ~ '_' ~ (item.key | upper) %}
       - {{ envkey }}={{ item.value }}
+      {% endfor %}
+      {% endfor %}
+
+      {% for registry in whatsupdocker_registries | default({}, true) | dict2items %}
+      # Registry: {{ registry.key }}
+      {% for ritem in registry.value | default({}, true) | dict2items %}
+      {% for item in ritem.value | default({}, true) | dict2items %}
+      - WUD_REGISTRY_{{ registry.key | upper }}_{{ ritem.key | upper }}_{{ item.key | upper }}={{ item.value }}
+      {% endfor %}
       {% endfor %}
       {% endfor %}
 
