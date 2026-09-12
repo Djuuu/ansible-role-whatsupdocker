@@ -18,6 +18,10 @@ services:
     environment:
       - TZ={{ timezone | default('UTC') }}
 
+      # Administrator credentials
+      - WUD_AUTH_ADMIN_USER={{ whatsupdocker_auth_admin_user }}
+      - WUD_AUTH_ADMIN_PASSWORD={{ whatsupdocker_auth_admin_password }}
+
       {% for watcher in whatsupdocker_watchers | default({}, true) | dict2items %}
       # Watcher: {{ watcher.key }}
       {% for item in watcher.value | default({}, true) | dict2items %}
